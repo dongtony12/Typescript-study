@@ -1,14 +1,18 @@
-import { useEffect, useRef, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Counter from "./Counter";
+import Home from "./Home";
+import TextInput from "./TextInput";
 
 const App = () => {
-  const [test, setTest] = useState("qr");
-  const targetRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (targetRef.current) console.log(targetRef.current.offsetHeight);
-  }, [targetRef]);
-
-  return <div ref={targetRef}>hello</div>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/counter" element={<Counter />} />
+        <Route path="/input" element={<TextInput />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
 export default App;
